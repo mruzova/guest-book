@@ -1,0 +1,22 @@
+.btn-custom {
+  background: rgb(126, 240, 254);
+  background: radial-gradient(
+    circle,
+    rgba(126, 240, 254, 1) 0%,
+    rgba(217, 158, 255, 0.3309698879551821) 100%
+  );
+  color: darkblue;
+}
+.avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+  color: red;
+}
+span {
+  color: red;
+}

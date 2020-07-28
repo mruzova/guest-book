@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row "
+       style="margin-top: 20px;">
+    <div class="col col-lg-9 mx-auto">
+
+      <form class="justify-content-center"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="signupForm">
+        <div class="form-group ">
+          <label for="email">E-Mail</label>
+          <input type="email"
+                 id="email"
+                 class="form-control"
+                 name="email"
+                 email
+                 #email
+                 formControlName="email">
+          <span class="form-text"
+                *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">the email is not provided or invalid</span>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text"
+                 id="name"
+                 class="form-control"
+                 name="name"
+                 formControlName="name">
+          <span class="form-text"
+                *ngIf="!signupForm.get('name').valid && signupForm.get('name').touched">the name is not provided</span>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password"
+                 id="password"
+                 class="form-control"
+                 name="password"
+                 required
+                 formControlName="password" />
+          <span class="form-text"
+                *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">the password is not provided or invalid (must be at least 8 symbols)</span>
+        </div>
+        <div class="form-group">
+          <label for="password_confirmation">Confirm Password</label>
+          <input type="password"
+                 id="password_confirmation"
+                 class="form-control"
+                 name="password_confirmation"
+                 required
+                 formControlName="password_confirmation" />
+          <span class="form-text"
+                *ngIf="!signupForm.get('password_confirmation').valid && signupForm.get('password_confirmation').touched">the password confirmation is not provided
+          </span>
+          <span *ngIf="signupForm.get('password_confirmation').dirty && signupForm.errors?.passwordNotMatch">Passwords must match</span>
+
+
+        </div>
+        <!-- <div class="form-group">
+          <div class="avatar">
+            <input type="file"
+                   formControlName="avatar"
+                   #fileInput
+                   accept="image/jpeg, image/png, image/bmp"
+                   name="photo"
+                   id="photo"
+                   #file
+                   (change)="preview(file.files)">
+
+
+            <img [src]="imgURL"
+                 alt="avatar"
+                 *ngIf="imgURL">
+          </div>
+        </div> -->
+        <div>
+          <button class="btn btn-custom"
+                  type="submit"
+                  [disabled]="!signupForm.valid">
+            Sign Up
+          </button>
+
+          <!-- <button class="btn btn-custom"
+                  type="button">
+            Switch to Login
+          </button> -->
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

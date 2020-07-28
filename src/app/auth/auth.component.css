@@ -1,0 +1,22 @@
+.list-auth {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.list-auth ul li {
+  background: rgb(126, 240, 254);
+  background: radial-gradient(
+    circle,
+    rgba(126, 240, 254, 1) 0%,
+    rgba(217, 158, 255, 0.3309698879551821) 100%
+  );
+}
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+a {
+  padding: 0.01vh 9vw;
+  color: darkblue;
+}

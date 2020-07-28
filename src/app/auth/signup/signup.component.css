@@ -1,0 +1,56 @@
+.btn-custom {
+  background: rgb(126, 240, 254);
+  background: radial-gradient(
+    circle,
+    rgba(126, 240, 254, 1) 0%,
+    rgba(217, 158, 255, 0.3309698879551821) 100%
+  );
+  color: darkblue;
+}
+input#photo::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input#photo::before {
+  display: flex;
+  justify-content: center;
+  content: "Select Your Avatar";
+  color: #f7feff;
+  background: rgb(247, 187, 244);
+  background: linear-gradient(
+    90deg,
+    rgba(247, 187, 244, 1) 0%,
+    rgba(199, 140, 255, 0.8099614845938375) 35%,
+    rgba(109, 142, 247, 0.7819502801120448) 100%
+  );
+  border: none;
+  border-radius: 3px;
+  padding: 10px 30px;
+  outline: none;
+  white-space: nowrap;
+}
+input#photo {
+  padding-top: 6%;
+  border: 0;
+  color: transparent;
+}
+input#photo:active,
+input#photo:focus {
+  outline: 0;
+}
+.avatar {
+  display: flex;
+  justify-content: space-between;
+}
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+span {
+  color: red;
+}
+img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: 20% 10px;
+}
