@@ -14,7 +14,6 @@
                  id="email"
                  class="form-control"
                  name="email"
-                 email
                  #email
                  formControlName="email">
           <span class="form-text"
@@ -32,17 +31,20 @@
                 *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">the password is not provided</span>
         </div>
 
-        <div>
+        <div class="form-details">
           <button class="btn btn-custom"
                   type="submit"
                   [disabled]="!loginForm.valid">
             Log In
           </button>
+          <div class="remember">
+            <label for="remember">Remember me?</label>
+            <input type="checkbox"
+                   name="remember"
+                   id="remember"
+                   aria-label="Checkbox for following text input">
 
-          <!-- <button class="btn btn-custom"
-                  type="button">
-            Switch to Login
-          </button> -->
+          </div>
         </div>
       </form>
     </div>

@@ -12,24 +12,16 @@ import { FormGroup } from '@angular/forms';
 export class SignupService {
   constructor(private http: HttpClient) {}
 
-  signup(signupModel: SignupModel) {
-    // const HttpUploadOptions = {
-    //   headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' }),
-    // };
-    // const formData = new FormData();
-    // formData.append('avatar', signupModel.avatar);
-    // formData.append('email', signupModel.email);
-    // formData.append('name', signupModel.name);
-    // formData.append('password', signupModel.password);
-    return this.http.post(
-      'https://guest-book.naveksoft.com/api/v1/auth/register',
-      {
-        // avatar: signupModel.avatar,
-        email: signupModel.email,
-        name: signupModel.name,
-        password: signupModel.password,
-        password_confirmation: signupModel.password_confirmation,
-      }
-    );
+  signup(signupModel: SignupModel, fileToUpload: File) {
+    const formData = new FormData();
+    if (fileToUpload) {
+      formData.append('avatar', fileToUpload, fileToUpload.name);
+    }
+
+    formData.append('email', signupModel.email);
+    formData.append('name', signupModel.name);
+    formData.append('password', signupModel.password);
+    formData.append('password_confirmation', signupModel.password_confirmation);
+    return this.http.post('/auth/register', formData);
   }
 }

@@ -20,3 +20,11 @@ textarea.ng-invalid.ng-touched {
 span {
   color: red;
 }
+.form-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.remember label {
+  padding-right: 20px;
+}

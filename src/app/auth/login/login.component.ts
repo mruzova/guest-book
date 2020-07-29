@@ -43,11 +43,9 @@ export class LoginComponent implements OnInit {
       (error) => {
         console.log(error);
         this.error = 'the password or email are invalid';
-        this.loginForm.controls['password'].reset();
+        this.loginForm.get('password').reset();
       }
     );
-
-    console.log(this.loginForm);
   }
   onHandleError() {
     this.error = null;

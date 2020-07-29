@@ -15,6 +15,7 @@ import { CustomValidators } from 'ngx-custom-validators';
 })
 export class SignupComponent implements OnInit {
   public imagePath;
+  fileToUpload: File = null;
   imgURL: any;
   public message: string;
   signupForm: FormGroup;
@@ -40,25 +41,26 @@ export class SignupComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     };
+    this.fileToUpload = files.item(0);
   }
   onSubmit() {
     if (!this.signupForm.valid) {
       return;
     }
-    // const avatar = this.signupForm.value.avatar;
+    const avatar = this.signupForm.value.avatar;
     const email = this.signupForm.value.email;
     const name = this.signupForm.value.name;
     const password = this.signupForm.value.password;
     const password_confirmation = this.signupForm.value.password_confirmation;
     let signupModel: SignupModel = {
-      //  avatar: avatar,
+      avatar: avatar,
       email: email,
       name: name,
       password: password,
       password_confirmation: password_confirmation,
     };
 
-    this.signupService.signup(signupModel).subscribe(
+    this.signupService.signup(signupModel, this.fileToUpload).subscribe(
       (response) => {
         console.log(response);
       },
@@ -66,11 +68,11 @@ export class SignupComponent implements OnInit {
         console.log(error);
       }
     );
-    console.log(this.signupForm);
   }
   private initForm() {
     this.signupForm = new FormGroup(
       {
+        avatar: new FormControl(null),
         email: new FormControl(null, [
           Validators.email,
           Validators.required,
@@ -90,29 +92,14 @@ export class SignupComponent implements OnInit {
           Validators.minLength(8),
           Validators.maxLength(255),
         ]),
-        //avatar: new FormControl(null),
       },
       { validators: this.confirmPassword.bind(this) }
-      // { validator: this.MustMatch('password', 'password_confirmation') }
     );
   }
   get f() {
     return this.signupForm.controls;
   }
-  // MustMatch(controlName: string, matchingControlName: string) {
-  //   return (formGroup: FormGroup) => {
-  //     const control = formGroup.controls[controlName];
-  //     const matchingControl = formGroup.controls[matchingControlName];
-  //     // set error on matchingControl if validation fails
-  //     if (control.value !== matchingControl.value) {
-  //       matchingControl.setErrors({ mustMatch: true });
-  //       return { mustMatch: true };
-  //     } else {
-  //       matchingControl.setErrors(null);
-  //       return null;
-  //     }
-  //   };
-  // }
+
   confirmPassword(formGroup: FormGroup) {
     const { value: password } = formGroup.get('password');
     const { value: confirmPassword } = formGroup.get('password_confirmation');
