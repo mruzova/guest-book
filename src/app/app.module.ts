@@ -13,7 +13,6 @@ import { AlertComponent } from './alert/alert.component';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { PostsComponent } from './posts/posts.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
-import { PostsListItemComponent } from './posts/posts-list/posts-list-item/posts-list-item.component';
 import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.component';
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.com
     AlertComponent,
     PostsComponent,
     PostsListComponent,
-    PostsListItemComponent,
     PostsItemComponent,
   ],
   imports: [
