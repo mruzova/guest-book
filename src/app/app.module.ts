@@ -14,6 +14,7 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { PostsComponent } from './posts/posts.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.component';
+import { PostsAddComponent } from './posts/posts-add/posts-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.com
     PostsComponent,
     PostsListComponent,
     PostsItemComponent,
+    PostsAddComponent,
   ],
   imports: [
     BrowserModule,

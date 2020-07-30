@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService, LoginModel } from './login.service';
 import { TokenService } from 'src/app/core/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   error: string = null;
   constructor(
     private loginService: LoginService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('password').reset();
       }
     );
+    this.router.navigate(['../posts']);
   }
   onHandleError() {
     this.error = null;

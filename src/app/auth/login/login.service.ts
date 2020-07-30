@@ -4,7 +4,7 @@ export interface LoginModel {
 }
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { AuthResponse, TokenService } from '../../core/services/token.service';
 @Injectable({ providedIn: 'root' })

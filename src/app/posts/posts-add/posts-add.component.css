@@ -1,0 +1,14 @@
+.btn-custom {
+  background: rgb(126, 240, 254);
+  background: radial-gradient(
+    circle,
+    rgba(126, 240, 254, 1) 0%,
+    rgba(217, 158, 255, 0.3309698879551821) 100%
+  );
+  padding: 7px 45px;
+  color: darkblue;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
