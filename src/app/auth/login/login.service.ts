@@ -13,9 +13,15 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(loginModel: LoginModel) {
-    return this.http.post<LoginResponse>('/auth/login', {
-      email: loginModel.email,
-      password: loginModel.password,
-    });
+    return this.http
+      .post<LoginResponse>('/auth/login', {
+        email: loginModel.email,
+        password: loginModel.password,
+      })
+      .pipe(
+        tap((response) =>
+          localStorage.setItem('access_token', response.token.access_token)
+        )
+      );
   }
 }
