@@ -8,6 +8,8 @@ import {
 import { SignupService, SignupModel } from './signup.service';
 import { CustomValidators } from 'ngx-custom-validators';
 
+import { TokenService } from 'src/app/core/services/token.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -20,7 +22,10 @@ export class SignupComponent implements OnInit {
   public message: string;
   signupForm: FormGroup;
 
-  constructor(private signupService: SignupService) {}
+  constructor(
+    private signupService: SignupService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -63,6 +68,7 @@ export class SignupComponent implements OnInit {
     this.signupService.signup(signupModel, this.fileToUpload).subscribe(
       (response) => {
         console.log(response);
+        this.tokenService.storeToken(response);
       },
       (error) => {
         console.log(error);

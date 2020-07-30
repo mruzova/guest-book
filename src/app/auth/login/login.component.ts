@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService, LoginModel } from './login.service';
+import { TokenService } from 'src/app/core/services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,10 @@ import { LoginService, LoginModel } from './login.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error: string = null;
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private loginService: LoginService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -39,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginModel).subscribe(
       (response) => {
         console.log(response);
+        this.tokenService.storeToken(response);
       },
       (error) => {
         console.log(error);

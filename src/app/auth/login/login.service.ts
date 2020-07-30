@@ -2,26 +2,19 @@ export interface LoginModel {
   email: string;
   password: string;
 }
-export interface LoginResponse {
-  token: { access_token: string; expires_at: Date };
-}
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { AuthResponse, TokenService } from '../../core/services/token.service';
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(loginModel: LoginModel) {
-    return this.http
-      .post<LoginResponse>('/auth/login', {
-        email: loginModel.email,
-        password: loginModel.password,
-      })
-      .pipe(
-        tap((response) =>
-          localStorage.setItem('access_token', response.token.access_token)
-        )
-      );
+    return this.http.post<AuthResponse>('/auth/login', {
+      email: loginModel.email,
+      password: loginModel.password,
+    });
   }
 }

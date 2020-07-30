@@ -5,13 +5,14 @@ export interface SignupModel {
   password: string;
   password_confirmation: string;
 }
-export interface SignupResponse {
-  token: { access_token: string; expires_at: Date };
-}
+// export interface SignupResponse {
+//   token: { access_token: string; expires_at: Date };
+// }
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { tap } from 'rxjs/operators';
+import { AuthResponse } from 'src/app/core/services/token.service';
 
 @Injectable({ providedIn: 'root' })
 export class SignupService {
@@ -27,12 +28,6 @@ export class SignupService {
     formData.append('name', signupModel.name);
     formData.append('password', signupModel.password);
     formData.append('password_confirmation', signupModel.password_confirmation);
-    return this.http
-      .post<SignupResponse>('/auth/register', formData)
-      .pipe(
-        tap((response) =>
-          localStorage.setItem('access_token', response.token.access_token)
-        )
-      );
+    return this.http.post<AuthResponse>('/auth/register', formData);
   }
 }
