@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+
   error: string = null;
   constructor(
     private loginService: LoginService,
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         console.log(response);
         this.tokenService.storeToken(response);
+        this.router.navigate(['../posts']);
       },
       (error) => {
         console.log(error);
@@ -53,7 +55,6 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('password').reset();
       }
     );
-    this.router.navigate(['../posts']);
   }
   onHandleError() {
     this.error = null;

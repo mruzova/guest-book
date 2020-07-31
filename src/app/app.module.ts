@@ -16,6 +16,7 @@ import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.component';
 import { PostsAddComponent } from './posts/posts-add/posts-add.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { AuthGuard } from './auth/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
       useClass: AuthInterceptor,
       multi: true,
     },
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })

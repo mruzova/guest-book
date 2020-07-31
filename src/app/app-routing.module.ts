@@ -3,6 +3,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 import { PostsComponent } from './posts/posts.component';
 const appRoutes: Routes = [
   {
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   {
     path: 'posts',
     component: PostsComponent,
+    canActivate: [AuthGuard],
   },
 ];
 @NgModule({

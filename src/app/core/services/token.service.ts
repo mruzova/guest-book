@@ -5,6 +5,10 @@ export interface AuthResponse {
 }
 @Injectable({ providedIn: 'root' })
 export class TokenService {
+  get hasToken() {
+    return !!this.getToken();
+  }
+
   storeToken(response: AuthResponse) {
     localStorage.setItem('access_token', response.token.access_token);
   }
