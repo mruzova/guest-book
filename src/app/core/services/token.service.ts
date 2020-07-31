@@ -8,4 +8,7 @@ export class TokenService {
   storeToken(response: AuthResponse) {
     localStorage.setItem('access_token', response.token.access_token);
   }
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
 }

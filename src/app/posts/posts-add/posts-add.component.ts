@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostsService } from '../posts.service';
-import { DataStorage } from '../../shared/data-storage.service';
+
 @Component({
   selector: 'app-posts-add',
   templateUrl: './posts-add.component.html',
@@ -9,17 +9,16 @@ import { DataStorage } from '../../shared/data-storage.service';
 })
 export class PostsAddComponent implements OnInit {
   postForm: FormGroup;
-  constructor(
-    private postsService: PostsService,
-    private dataStorageService: DataStorage
-  ) {}
+  constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
     this.initForm();
   }
   onPost() {
-    this.postsService.addPost(this.postForm.value);
-    this.dataStorageService.storePosts();
+    this.postsService.storePost(
+      this.postForm.value.title,
+      this.postForm.value.message
+    );
   }
 
   private initForm() {

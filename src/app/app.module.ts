@@ -15,6 +15,7 @@ import { PostsComponent } from './posts/posts.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.component';
 import { PostsAddComponent } from './posts/posts-add/posts-add.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,11 @@ import { PostsAddComponent } from './posts/posts-add/posts-add.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Post } from './post.model';
-import { Subject } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
+
 @Injectable({ providedIn: 'root' })
 export class PostsService {
-  postsChanged = new Subject<Post[]>();
-  private posts: Post[] = [];
-  addPost(post: Post) {
-    this.posts.push(post);
-    this.postsChanged.next(this.posts.slice());
-  }
-  getPosts() {
-    return this.posts.slice();
+  constructor(private http: HttpClient) {}
+  storePost(title: string, message: string) {
+    this.http
+      .post('/posts', {
+        title: title,
+        message: message,
+      })
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }
