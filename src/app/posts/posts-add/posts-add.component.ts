@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostsService } from '../posts.service';
+import { Post } from '../post.model';
 
 @Component({
   selector: 'app-posts-add',
@@ -19,6 +20,7 @@ export class PostsAddComponent implements OnInit {
       this.postForm.value.title,
       this.postForm.value.message
     );
+    this.onClear();
   }
 
   private initForm() {

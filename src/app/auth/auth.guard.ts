@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    console.log(this.tokenService.hasToken);
     if (this.tokenService.hasToken) {
       return true;
     } else {

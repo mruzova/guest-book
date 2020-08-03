@@ -1,0 +1,17 @@
+.btn-custom {
+  background: rgb(126, 240, 254);
+  background: radial-gradient(
+    circle,
+    rgba(126, 240, 254, 1) 0%,
+    rgba(217, 158, 255, 0.3309698879551821) 100%
+  );
+  color: darkblue;
+}
+.comment-section {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.comment-section input {
+  width: 80%;
+}

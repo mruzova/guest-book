@@ -17,6 +17,11 @@ import { PostsItemComponent } from './posts/posts-list/posts-item/posts-item.com
 import { PostsAddComponent } from './posts/posts-add/posts-add.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
+
+import { CommentListComponent } from './comment/comment-list/comment-list.component';
+import { CommentItemComponent } from './comment/comment-list/comment-item/comment-item.component';
+
+import { CommentAddComponent } from './comment/comment-add/comment-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +34,10 @@ import { AuthGuard } from './auth/auth.guard';
     PostsListComponent,
     PostsItemComponent,
     PostsAddComponent,
+
+    CommentListComponent,
+    CommentItemComponent,
+    CommentAddComponent,
   ],
   imports: [
     BrowserModule,
