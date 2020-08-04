@@ -20,6 +20,7 @@ export class LoginService {
   }
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('id');
     this.router.navigate(['/auth']);
   }
 }

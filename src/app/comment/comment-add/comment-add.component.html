@@ -2,13 +2,13 @@
       (ngSubmit)="onComment()">
   <div class="form-group comment-section">
     <input type="text"
-           id="message"
            class="form-control"
            name="message"
            #title
            formControlName="message"
            placeholder="leave your comment">
     <button type="submit"
-            class="btn btn-custom">send</button>
+            class="btn btn-custom"
+            [disabled]="!commentForm.valid">send</button>
   </div>
 </form>

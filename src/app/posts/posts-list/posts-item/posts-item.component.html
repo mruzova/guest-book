@@ -7,9 +7,10 @@ margin-bottom: 50px;"
       <textarea disabled
                 cols="54"
                 rows="4">{{ post.message }}</textarea>
+      <app-comment-add *ngIf="canComment"
+                       [id]="post.id"
+                       [user_id]="post.user_id"></app-comment-add>
     </div>
-    <div>
-      <app-comment-add></app-comment-add>
-    </div>
+
   </div>
 </a>
