@@ -1,0 +1,10 @@
+textarea {
+  background: rgb(95, 132, 237);
+  background: linear-gradient(
+    90deg,
+    rgba(109, 142, 247, 0.7819502801120448) 0%,
+    rgba(199, 140, 255, 0.8099614845938375) 35%,
+    rgba(247, 187, 244, 1) 100%
+  );
+  color: white;
+}

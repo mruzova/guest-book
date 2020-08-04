@@ -1,5 +1,5 @@
-<a style="cursor: pointer;
-margin-bottom: 50px;"
+<a style="cursor: pointer; overflow: scroll;
+margin-bottom: 50px; margin-left:-10px;"
    class="list-group-item clearfix">
   <div style="height: 300px;">
     <h4 class="list-group-item-heading">{{ post.title }}</h4>
@@ -10,6 +10,7 @@ margin-bottom: 50px;"
       <app-comment-add *ngIf="canComment"
                        [id]="post.id"
                        [user_id]="post.user_id"></app-comment-add>
+      <app-comment-list></app-comment-list>
     </div>
 
   </div>
