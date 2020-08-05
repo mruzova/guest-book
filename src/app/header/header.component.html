@@ -5,8 +5,7 @@
          class="navbar-brand">Guest Book</a>
     </div>
     <div *ngIf="tokenService.hasToken">
-      <a style="cursor: pointer;"
-         (click)="onLogout()">Logout</a>
+      <a (click)="onLogout()">Logout</a>
     </div>
   </div>
 </nav>

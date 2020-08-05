@@ -1,7 +1,7 @@
-<div class="row"
-     style="margin-top: 20px;">
+<div class="row comment-list-field">
   <div class="col-lg-10">
-    <app-comment-item></app-comment-item>
+    <app-comment-item *ngFor="let comment of data?.data"
+                      [comment]="comment"></app-comment-item>
 
   </div>
 </div>

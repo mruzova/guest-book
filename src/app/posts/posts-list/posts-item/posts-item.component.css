@@ -1,0 +1,8 @@
+.post-field {
+  overflow: scroll;
+  margin-bottom: 50px;
+  margin-left: -10px;
+}
+.post-item-field {
+  height: 300px;
+}

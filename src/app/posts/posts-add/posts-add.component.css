@@ -12,3 +12,6 @@
   display: flex;
   justify-content: space-between;
 }
+.post-add-field {
+  margin-top: 20px;
+}

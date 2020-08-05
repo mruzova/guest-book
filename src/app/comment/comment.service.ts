@@ -11,6 +11,6 @@ export class CommentService {
     });
   }
   getComments(id: number) {
-    return this.http.get<Comment[]>('/posts' + id + '/answers');
+    return this.http.get<Comment[]>('/posts/' + id + '/answers');
   }
 }

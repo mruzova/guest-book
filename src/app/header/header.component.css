@@ -10,6 +10,7 @@
 
 a {
   color: white;
+  cursor: pointer;
 }
 .link-custom:hover {
   color: darkblue;
