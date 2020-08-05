@@ -54,3 +54,6 @@ img {
   object-fit: cover;
   object-position: 20% 10px;
 }
+.signup-field {
+  margin-top: 20px;
+}

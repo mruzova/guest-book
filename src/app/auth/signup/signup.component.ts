@@ -9,6 +9,7 @@ import { SignupService, SignupModel } from './signup.service';
 import { CustomValidators } from 'ngx-custom-validators';
 
 import { TokenService } from 'src/app/core/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -21,10 +22,11 @@ export class SignupComponent implements OnInit {
   imgURL: any;
   public message: string;
   signupForm: FormGroup;
-
+  error: string = null;
   constructor(
     private signupService: SignupService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,11 +69,13 @@ export class SignupComponent implements OnInit {
 
     this.signupService.signup(signupModel, this.fileToUpload).subscribe(
       (response) => {
-        console.log(response);
         this.tokenService.storeToken(response);
+        this.router.navigate(['../posts']);
       },
       (error) => {
         console.log(error);
+        this.error = 'user with this email is already signed up';
+        this.signupForm.get('email').reset();
       }
     );
   }
@@ -111,5 +115,8 @@ export class SignupComponent implements OnInit {
     const { value: confirmPassword } = formGroup.get('password_confirmation');
 
     return password === confirmPassword ? null : { passwordNotMatch: true };
+  }
+  onHandleError() {
+    this.error = null;
   }
 }
