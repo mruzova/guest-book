@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostsService } from '../posts.service';
 import { Post } from '../post.model';
@@ -10,16 +10,18 @@ import { Post } from '../post.model';
 })
 export class PostsAddComponent implements OnInit {
   postForm: FormGroup;
+  @Output() newPost = new EventEmitter<Post>();
   constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
     this.initForm();
   }
   onPost() {
-    this.postsService.storePost(
-      this.postForm.value.title,
-      this.postForm.value.message
-    );
+    this.postsService
+      .storePost(this.postForm.value.title, this.postForm.value.message)
+      .subscribe((response) => {
+        this.newPost.emit(response);
+      });
     this.onClear();
   }
 

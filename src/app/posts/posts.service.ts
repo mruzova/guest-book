@@ -10,14 +10,10 @@ export class PostsService {
 
   constructor(private http: HttpClient) {}
   storePost(title: string, message: string) {
-    this.http
-      .post('/posts', {
-        title: title,
-        message: message,
-      })
-      .subscribe((response) => {
-        console.log(response);
-      });
+    return this.http.post<Post>('/posts', {
+      title: title,
+      message: message,
+    });
   }
   getPosts() {
     return this.http.get<Post[]>('/posts');

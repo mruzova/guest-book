@@ -22,4 +22,15 @@ textarea {
 .buttons {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+input {
+  border: none;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+::placeholder {
+  color: black;
 }

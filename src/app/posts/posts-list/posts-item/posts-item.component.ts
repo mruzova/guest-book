@@ -14,7 +14,8 @@ export class PostsItemComponent implements OnInit {
   canComment: boolean = false;
   @Input() post: Post;
   @Input() index: number;
-
+  message: string;
+  title: string;
   constructor(
     private tokenService: TokenService,
     private postService: PostsService
@@ -24,6 +25,8 @@ export class PostsItemComponent implements OnInit {
     if (this.post.user_id.toString() === this.tokenService.getId()) {
       this.canComment = true;
     }
+    this.message = this.post.message;
+    this.title = this.post.title;
   }
   onDeletePost() {
     this.postService.deletePost(this.post.id).subscribe((response) => {
@@ -33,7 +36,7 @@ export class PostsItemComponent implements OnInit {
   }
   onUpdatePost() {
     this.postService
-      .updatePost(this.post.id, this.post.title, this.post.message)
+      .updatePost(this.post.id, this.title, this.message)
       .subscribe((response) => {
         console.log(response);
         this.canComment = true;
