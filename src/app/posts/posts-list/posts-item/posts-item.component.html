@@ -1,12 +1,29 @@
 <div class="list-group-item clearfix post-field">
+
   <div class="post-item-field">
+
+    <div class="buttons">
+
+      <button type="button"
+              class="btn btn-custom"
+              *ngIf="canComment"
+              (click)="onUpdatePost()">update post</button>
+      <button *ngIf="canComment"
+              type="button"
+              class="btn btn-danger"
+              (click)="onDeletePost()">x</button>
+    </div>
     <h4 class="list-group-item-heading">{{ post.title }}</h4>
+
     <div>
-      <textarea disabled
+
+      <textarea [disabled]="!canComment"
                 rows="4">{{ post.message }}</textarea>
+
       <app-comment-add *ngIf="canComment"
                        [id]="post.id"
                        [user_id]="post.user_id"></app-comment-add>
+
       <app-comment-list [post_id]="post.id"></app-comment-list>
     </div>
 

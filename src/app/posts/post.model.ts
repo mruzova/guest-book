@@ -4,6 +4,7 @@ export class Post {
   title: string;
   message: string;
   created_at: Date;
+  answers?: Comment[];
   constructor(obj) {
     Object.assign(this, obj);
   }

@@ -13,4 +13,7 @@ export class CommentService {
   getComments(id: number) {
     return this.http.get<Comment[]>('/posts/' + id + '/answers');
   }
+  deleteComment(post_id: number, id: number) {
+    return this.http.delete('/posts/' + post_id + '/answers/' + id);
+  }
 }

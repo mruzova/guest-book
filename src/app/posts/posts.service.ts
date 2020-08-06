@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
+import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   postsChanged = new Subject<Post[]>();
@@ -23,5 +21,11 @@ export class PostsService {
   }
   getPosts() {
     return this.http.get<Post[]>('/posts');
+  }
+  deletePost(id: number) {
+    return this.http.delete('/posts/' + id);
+  }
+  updatePost(id: number, title: string, message: string) {
+    return this.http.put('/posts/' + id, { title: title, message: message });
   }
 }

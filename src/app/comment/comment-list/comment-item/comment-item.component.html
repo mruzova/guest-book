@@ -1,6 +1,9 @@
 <div>
   <textarea disabled
-            rows="2">{{comment.message}}</textarea>
+            rows="2">{{comment.message}} </textarea>
 
-
+  <button *ngIf="canDelete"
+          type="button"
+          class="btn btn-danger"
+          (click)="onDeleteComment()">x</button>
 </div>

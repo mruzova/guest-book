@@ -6,6 +6,15 @@ textarea {
     rgba(199, 140, 255, 0.8099614845938375) 35%,
     rgba(247, 187, 244, 1) 100%
   );
-  width: 122%;
+  width: 100%;
   color: white;
+  margin-right: 5px;
+}
+div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+button {
+  padding: 5px 15px;
 }

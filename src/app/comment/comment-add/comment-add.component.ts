@@ -25,6 +25,7 @@ export class CommentAddComponent implements OnInit {
     this.commentService
       .storeComment(this.commentForm.value.message, this.id)
       .subscribe((response) => console.log(response));
+    this.commentForm.reset();
   }
   private initForm() {
     this.commentForm = new FormGroup({
