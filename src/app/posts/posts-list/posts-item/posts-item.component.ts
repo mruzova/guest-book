@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from '../../post.model';
-import { CommentService } from 'src/app/comment/comment.service';
+
 import { TokenService } from 'src/app/core/services/token.service';
 import { PostsService } from '../../posts.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-posts-item',
@@ -14,6 +13,7 @@ export class PostsItemComponent implements OnInit {
   canComment: boolean = false;
   @Input() post: Post;
   @Input() index: number;
+  @Output() oldPost = new EventEmitter<Post>();
   message: string;
   title: string;
   constructor(
@@ -32,6 +32,7 @@ export class PostsItemComponent implements OnInit {
     this.postService.deletePost(this.post.id).subscribe((response) => {
       console.log(response);
       this.canComment = true;
+      this.oldPost.emit(response);
     });
   }
   onUpdatePost() {

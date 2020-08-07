@@ -19,7 +19,7 @@ export class PostsService {
     return this.http.get<Post[]>('/posts');
   }
   deletePost(id: number) {
-    return this.http.delete('/posts/' + id);
+    return this.http.delete<Post>('/posts/' + id);
   }
   updatePost(id: number, title: string, message: string) {
     return this.http.put('/posts/' + id, { title: title, message: message });

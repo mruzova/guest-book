@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { PostsService } from '../posts.service';
 import { Post } from '../post.model';
@@ -9,15 +9,11 @@ import { Post } from '../post.model';
 })
 export class PostsListComponent implements OnInit {
   data;
-
+  @Input() posts: Post[];
   constructor(private postsService: PostsService) {}
 
-  ngOnInit(): void {
-    this.onGetPosts();
-  }
-  onGetPosts() {
-    this.postsService.getPosts().subscribe((res) => {
-      this.data = res;
-    });
+  ngOnInit(): void {}
+  deletePost(index: number) {
+    this.posts.splice(index, 1);
   }
 }

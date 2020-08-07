@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from './post.model';
+import { PostsService } from './posts.service';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -7,7 +8,22 @@ import { Post } from './post.model';
 })
 export class PostsComponent implements OnInit {
   posts: Post[];
-  constructor() {}
+  data;
+  constructor(private postsService: PostsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.onGetPosts();
+  }
+
+  newPost(post) {
+    this.posts.unshift(post);
+    console.log(post);
+  }
+  onGetPosts() {
+    this.postsService.getPosts().subscribe((res) => {
+      this.data = res;
+      this.posts = this.data.data;
+      console.log(this.posts);
+    });
+  }
 }
