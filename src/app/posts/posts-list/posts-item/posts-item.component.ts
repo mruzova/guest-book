@@ -11,6 +11,7 @@ import { PostsService } from '../../posts.service';
 })
 export class PostsItemComponent implements OnInit {
   canComment: boolean = false;
+  comments: Comment[];
   @Input() post: Post;
   @Input() index: number;
   @Output() oldPost = new EventEmitter<Post>();

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from '../../comment.model.';
 import { CommentService } from '../../comment.service';
 import { TokenService } from 'src/app/core/services/token.service';
@@ -9,6 +9,7 @@ import { TokenService } from 'src/app/core/services/token.service';
 })
 export class CommentItemComponent implements OnInit {
   @Input() comment: Comment;
+  @Output() oldComment = new EventEmitter<Comment>();
   canDelete: boolean = false;
   constructor(
     private commentService: CommentService,
@@ -23,6 +24,8 @@ export class CommentItemComponent implements OnInit {
   onDeleteComment() {
     this.commentService
       .deleteComment(this.comment.post_id, this.comment.id)
-      .subscribe();
+      .subscribe((response) => {
+        this.oldComment.emit(response);
+      });
   }
 }

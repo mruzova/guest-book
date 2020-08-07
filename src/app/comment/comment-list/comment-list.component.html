@@ -4,8 +4,9 @@
             (click)="onGetComments()"
             class="btn btn-custom">show comments</button>
     <p>{{error}}</p>
-    <app-comment-item *ngFor="let comment of data?.data"
-                      [comment]="comment">
+    <app-comment-item *ngFor="let comment of comments; let i = index;"
+                      [comment]="comment"
+                      (oldComment)="deleteComment(i)">
     </app-comment-item>
 
 
