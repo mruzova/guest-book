@@ -3,6 +3,7 @@ import { Post } from '../../post.model';
 
 import { TokenService } from 'src/app/core/services/token.service';
 import { PostsService } from '../../posts.service';
+import { CommentService } from '../../comment/comment.service';
 
 @Component({
   selector: 'app-posts-item',
@@ -12,14 +13,18 @@ import { PostsService } from '../../posts.service';
 export class PostsItemComponent implements OnInit {
   canComment: boolean = false;
   comments: Comment[];
+  data;
+  error: string = null;
   @Input() post: Post;
   @Input() index: number;
   @Output() oldPost = new EventEmitter<Post>();
+
   message: string;
   title: string;
   constructor(
     private tokenService: TokenService,
-    private postService: PostsService
+    private postService: PostsService,
+    private commentService: CommentService
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +36,6 @@ export class PostsItemComponent implements OnInit {
   }
   onDeletePost() {
     this.postService.deletePost(this.post.id).subscribe((response) => {
-      console.log(response);
       this.canComment = true;
       this.oldPost.emit(response);
     });
@@ -40,8 +44,20 @@ export class PostsItemComponent implements OnInit {
     this.postService
       .updatePost(this.post.id, this.title, this.message)
       .subscribe((response) => {
-        console.log(response);
         this.canComment = true;
       });
+  }
+  onGetComments() {
+    this.commentService.getComments(this.post.id).subscribe((comment) => {
+      this.data = comment;
+      this.comments = this.data.data;
+      this.comments.reverse();
+      if (this.data.data.length === 0) {
+        this.error = 'there are no comments under this post yet';
+      }
+    });
+  }
+  newComment(comment) {
+    this.comments.unshift(comment);
   }
 }

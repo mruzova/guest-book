@@ -73,7 +73,6 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['../posts']);
       },
       (error) => {
-        console.log(error);
         this.error = 'user with this email is already signed up';
         this.signupForm.get('email').reset();
       }

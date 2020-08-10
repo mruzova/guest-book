@@ -6,7 +6,7 @@ export class CommentService {
   constructor(private http: HttpClient) {}
 
   storeComment(message: string, id: number) {
-    return this.http.post('/posts/' + id + '/answers', {
+    return this.http.post<Comment>('/posts/' + id + '/answers', {
       message: message,
     });
   }

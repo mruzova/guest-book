@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['../posts']);
       },
       (error) => {
-        console.log(error);
         this.error = 'the password or email are invalid';
         this.loginForm.get('password').reset();
       }

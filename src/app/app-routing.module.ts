@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { LoginComponent } from './auth/login/login.component';
-import { AuthGuard } from './auth/auth.guard';
-import { PostsComponent } from './posts/posts.component';
+import { Routes, RouterModule } from '@angular/router';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -12,17 +8,13 @@ const appRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'auth',
-    component: AuthComponent,
-    children: [
-      { path: 'signup', component: SignupComponent },
-      { path: 'login', component: LoginComponent },
-    ],
+    path: 'posts',
+    loadChildren: () =>
+      import('./posts/posts.module').then((m) => m.PostsModule),
   },
   {
-    path: 'posts',
-    component: PostsComponent,
-    canActivate: [AuthGuard],
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 @NgModule({

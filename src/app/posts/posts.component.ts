@@ -17,13 +17,11 @@ export class PostsComponent implements OnInit {
 
   newPost(post) {
     this.posts.unshift(post);
-    console.log(post);
   }
   onGetPosts() {
     this.postsService.getPosts().subscribe((res) => {
       this.data = res;
       this.posts = this.data.data;
-      console.log(this.posts);
     });
   }
 }

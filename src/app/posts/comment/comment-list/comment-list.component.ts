@@ -11,20 +11,19 @@ export class CommentListComponent implements OnInit {
   data;
   @Input() comments: Comment[];
   error: string = null;
+
   constructor(private commentService: CommentService) {}
 
-  ngOnInit(): void {
-    //this.onGetComments();
-  }
-  onGetComments() {
-    this.commentService.getComments(this.post_id).subscribe((comment) => {
-      this.data = comment;
-      this.comments = this.data.data;
-      if (this.data.data.length === 0) {
-        this.error = 'there are no comments under this post yet';
-      }
-    });
-  }
+  ngOnInit(): void {}
+  // onGetComments() {
+  //   this.commentService.getComments(this.post_id).subscribe((comment) => {
+  //     this.data = comment;
+  //     this.comments = this.data.data;
+  //     if (this.data.data.length === 0) {
+  //       this.error = 'there are no comments under this post yet';
+  //     }
+  //   });
+  // }
   deleteComment(index: number) {
     this.comments.splice(index, 1);
   }

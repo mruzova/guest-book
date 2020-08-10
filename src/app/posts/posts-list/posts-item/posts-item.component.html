@@ -25,7 +25,13 @@
 
       <app-comment-add *ngIf="canComment"
                        [id]="post.id"
-                       [user_id]="post.user_id"></app-comment-add>
+                       [user_id]="post.user_id"
+                       [comments]="comments"
+                       (newComment)="newComment($event)"></app-comment-add>
+      <p class="err">{{error}}</p>
+      <button type="button"
+              (click)="onGetComments()"
+              class="btn btn-custom">show comments</button>
 
       <app-comment-list [post_id]="post.id"
                         [comments]="comments"></app-comment-list>

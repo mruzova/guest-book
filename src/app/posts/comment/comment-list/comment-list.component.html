@@ -1,9 +1,7 @@
 <div class="row comment-list-field">
   <div class="col-lg-12">
-    <button type="button"
-            (click)="onGetComments()"
-            class="btn btn-custom">show comments</button>
-    <p>{{error}}</p>
+
+
     <app-comment-item *ngFor="let comment of comments; let i = index;"
                       [comment]="comment"
                       (oldComment)="deleteComment(i)">

@@ -1,7 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommentService } from '../comment.service';
 import { TokenService } from 'src/app/core/services/token.service';
+import { Comment } from '../comment.model.';
 @Component({
   selector: 'app-comment-add',
   templateUrl: './comment-add.component.html',
@@ -10,9 +18,13 @@ import { TokenService } from 'src/app/core/services/token.service';
 export class CommentAddComponent implements OnInit {
   @Input() id: number;
   @Input() user_id: number;
+
   commentForm: FormGroup;
   // canComment: boolean = false;
-
+  @Output() newComment = new EventEmitter<Comment>();
+  @Input() comments: Comment[];
+  message: string = null;
+  data;
   constructor(
     private commentService: CommentService,
     public tokenService: TokenService
@@ -24,7 +36,10 @@ export class CommentAddComponent implements OnInit {
   onComment() {
     this.commentService
       .storeComment(this.commentForm.value.message, this.id)
-      .subscribe((response) => console.log(response));
+      .subscribe((response) => {
+        this.newComment.emit(response);
+        this.message = 'your comment successfully added';
+      });
     this.commentForm.reset();
   }
   private initForm() {
