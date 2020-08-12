@@ -20,6 +20,7 @@ export class PostsAddComponent implements OnInit {
     this.postsService
       .storePost(this.postForm.value.title, this.postForm.value.message)
       .subscribe((response) => {
+        console.log(response);
         this.newPost.emit(response);
       });
     this.onClear();

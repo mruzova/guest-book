@@ -16,4 +16,7 @@ export class CommentService {
   deleteComment(post_id: number, id: number) {
     return this.http.delete<Comment>('/posts/' + post_id + '/answers/' + id);
   }
+  getMoreComments(id: number, page: number) {
+    return this.http.get<Comment[]>('/posts/' + id + '/answers?page=' + page);
+  }
 }

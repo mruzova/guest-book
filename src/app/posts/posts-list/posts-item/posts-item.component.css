@@ -37,3 +37,9 @@ input {
 .err {
   color: lightpink;
 }
+.show {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -15,7 +15,7 @@ export class PostsService {
       message: message,
     });
   }
-  getPosts() {
+  getPosts(page?: number) {
     return this.http.get<Post[]>('/posts');
   }
   deletePost(id: number) {

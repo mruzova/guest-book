@@ -35,6 +35,14 @@
 
       <app-comment-list [post_id]="post.id"
                         [comments]="comments"></app-comment-list>
+      <div class="show">
+        <button class="btn btn-custom"
+                (click)="onShowPrev()"
+                *ngIf="showPrev">prev page</button>
+        <button class="btn btn-custom"
+                (click)="onShowNext()"
+                *ngIf="showNext">next page</button>
+      </div>
     </div>
 
   </div>

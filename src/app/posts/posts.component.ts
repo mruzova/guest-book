@@ -9,6 +9,7 @@ import { PostsService } from './posts.service';
 export class PostsComponent implements OnInit {
   posts: Post[];
   data;
+
   constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
@@ -18,8 +19,8 @@ export class PostsComponent implements OnInit {
   newPost(post) {
     this.posts.unshift(post);
   }
-  onGetPosts() {
-    this.postsService.getPosts().subscribe((res) => {
+  onGetPosts(page?: number) {
+    this.postsService.getPosts(page).subscribe((res) => {
       this.data = res;
       this.posts = this.data.data;
     });

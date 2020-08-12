@@ -69,6 +69,7 @@ export class SignupComponent implements OnInit {
 
     this.signupService.signup(signupModel, this.fileToUpload).subscribe(
       (response) => {
+        console.log(response);
         this.tokenService.storeToken(response);
         this.router.navigate(['../posts']);
       },
