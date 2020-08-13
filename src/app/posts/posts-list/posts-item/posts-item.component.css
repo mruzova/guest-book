@@ -20,6 +20,25 @@ textarea {
     rgba(217, 158, 255, 0.3309698879551821) 100%
   );
 }
+.inputContainer {
+  position: relative;
+}
+.input-title {
+  width: 100%;
+  background: url(../../../../assets/images/84380.png) no-repeat;
+  background-size: 25px;
+
+  background-position: 98%;
+}
+.input-message {
+  width: 100%;
+  background: url(../../../../assets/images/84380.png) no-repeat;
+  background-size: 25px;
+
+  background-position-x: 98%;
+  background-position-y: 8%;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;

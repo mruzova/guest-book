@@ -13,16 +13,21 @@
               class="btn btn-danger"
               (click)="onDeletePost()">x</button>
     </div>
-    <input class="list-group-item-heading"
-           [(ngModel)]="title"
-           [disabled]="!canComment"
-           placeholder="{{title}}"
-           [class.edit-title]="canComment">
+    <div class="inputContainer">
+      <input class="list-group-item-heading input-title"
+             [(ngModel)]="title"
+             [disabled]="!canComment"
+             placeholder="{{title}}"
+             [class.input-title]="canComment">
+
+    </div>
     <div>
 
       <textarea [disabled]="!canComment"
                 rows="4"
-                [(ngModel)]="message">{{ message }}</textarea>
+                [(ngModel)]="message"
+                class="input-message"
+                [class.input-message]="canComment">{{ message }}</textarea>
 
       <app-comment-add *ngIf="canComment"
                        [id]="post.id"
