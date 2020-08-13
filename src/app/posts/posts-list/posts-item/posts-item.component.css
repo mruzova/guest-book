@@ -34,7 +34,7 @@ textarea {
   width: 100%;
   background: url(../../../../assets/images/84380.png) no-repeat;
   background-size: 25px;
-
+  padding-right: 30px;
   background-position-x: 98%;
   background-position-y: 8%;
 }
