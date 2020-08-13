@@ -4,8 +4,9 @@
   margin-bottom: 50px;
   margin-left: -10px;
 }
+
 .post-item-field {
-  height: 500px;
+  max-height: 500px;
 }
 textarea {
   width: 100%;

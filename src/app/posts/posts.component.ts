@@ -9,7 +9,8 @@ import { PostsService } from './posts.service';
 export class PostsComponent implements OnInit {
   posts: Post[];
   data;
-
+  pages: number[] = [];
+  currentPage: number = 1;
   constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
@@ -20,9 +21,11 @@ export class PostsComponent implements OnInit {
     this.posts.unshift(post);
   }
   onGetPosts(page?: number) {
+    this.currentPage = page;
     this.postsService.getPosts(page).subscribe((res) => {
       this.data = res;
       this.posts = this.data.data;
+      this.pages.length = this.data.meta.last_page;
     });
   }
 }

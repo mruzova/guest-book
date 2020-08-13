@@ -5,5 +5,22 @@
 
     <app-posts-list class="col"
                     [posts]="posts"></app-posts-list>
+
   </div>
+
+
+</div>
+<div class="pag">
+  <nav aria-label="...">
+    <ul class="pagination pagination-lg">
+      <li class="page-item"
+          *ngFor="let p of pages; let i = index;">
+        <a class="page-link"
+           [class.page-a]="currentPage === i +1"
+           tabindex="-1"
+           (click)="onGetPosts(i+1)">{{i+1}}</a>
+      </li>
+
+    </ul>
+  </nav>
 </div>

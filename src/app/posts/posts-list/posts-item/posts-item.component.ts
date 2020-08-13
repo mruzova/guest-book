@@ -14,7 +14,9 @@ export class PostsItemComponent implements OnInit {
   canComment: boolean = false;
   comments: Comment[];
   showNext: boolean = false;
+
   showPrev: boolean = false;
+
   data;
   error: string = null;
   @Input() post: Post;
@@ -46,13 +48,11 @@ export class PostsItemComponent implements OnInit {
     this.postService
       .updatePost(this.post.id, this.title, this.message)
       .subscribe((response) => {
-        console.log(response);
         this.canComment = true;
       });
   }
   onGetComments() {
     this.commentService.getComments(this.post.id).subscribe((comment) => {
-      console.log(comment);
       this.data = comment;
       this.comments = this.data.data;
       this.comments.reverse();
@@ -71,9 +71,9 @@ export class PostsItemComponent implements OnInit {
     this.commentService
       .getMoreComments(this.post.id, this.data.meta.current_page + 1)
       .subscribe((comment) => {
-        console.log(comment);
         this.data = comment;
         this.comments = this.data.data;
+        this.comments.reverse();
         if (this.data.links.next === null) {
           this.showNext = false;
         }
@@ -86,11 +86,14 @@ export class PostsItemComponent implements OnInit {
     this.commentService
       .getMoreComments(this.post.id, this.data.meta.current_page - 1)
       .subscribe((comment) => {
-        console.log(comment);
         this.data = comment;
         this.comments = this.data.data;
+        this.comments.reverse();
         if (this.data.links.prev === null) {
           this.showPrev = false;
+        }
+        if (this.data.links.next !== null) {
+          this.showNext = true;
         }
       });
   }

@@ -16,7 +16,11 @@ export class PostsService {
     });
   }
   getPosts(page?: number) {
-    return this.http.get<Post[]>('/posts');
+    if (page) {
+      return this.http.get<Post[]>('/posts?page=' + page);
+    } else {
+      return this.http.get<Post[]>('/posts');
+    }
   }
   deletePost(id: number) {
     return this.http.delete<Post>('/posts/' + id);
