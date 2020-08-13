@@ -44,3 +44,6 @@ input {
   display: flex;
   justify-content: space-between;
 }
+.edit-title {
+  border: 2px solid black;
+}

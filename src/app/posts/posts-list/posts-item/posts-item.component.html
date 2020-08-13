@@ -16,7 +16,8 @@
     <input class="list-group-item-heading"
            [(ngModel)]="title"
            [disabled]="!canComment"
-           placeholder="{{title}}">
+           placeholder="{{title}}"
+           [class.edit-title]="canComment">
     <div>
 
       <textarea [disabled]="!canComment"
