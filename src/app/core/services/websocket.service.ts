@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import Echo from 'laravel-echo';
 import EchoLibrary from 'laravel-echo';
 import { TokenService } from './token.service';
+import { PostsService } from 'src/app/posts/posts.service';
 
 @Injectable({ providedIn: 'root' })
 export class WebSocketService {
   echo;
   publicChannelEcho;
-  constructor(private tokenService: TokenService) {
+  constructor(
+    private tokenService: TokenService,
+    private postsService: PostsService
+  ) {
     this.echo = new Echo({
       broadcaster: 'pusher',
       key: 'key',
@@ -19,7 +23,7 @@ export class WebSocketService {
       authEndpoint: 'https://guest-book.naveksoft.com/broadcasting/auth',
       auth: {
         headers: {
-          Authorization: `Bearer $` + this.tokenService.getToken(),
+          Authorization: `Bearer ` + this.tokenService.getToken(),
           Accept: `application/json`,
         },
       },
@@ -30,5 +34,9 @@ export class WebSocketService {
     this.echo.channel('public-push').listen('PublicPush', (e) => {
       console.log(e);
     });
+    console.log(tokenService.getId());
+    this.echo
+      .private('user.' + this.tokenService.getId())
+      .listen('UserPush', (e) => console.log(e));
   }
 }

@@ -6,8 +6,7 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   postsChanged = new Subject<Post[]>();
-  private posts: Post[] = [];
-
+  posts: Post[];
   constructor(private http: HttpClient) {}
   storePost(title: string, message: string) {
     return this.http.post<Post>('/posts', {
