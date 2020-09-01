@@ -31,7 +31,7 @@ export class WebSocketService {
       disableStats: true,
     });
 
-    this.echo.channel('public-push').listen('PublicPush', (e) => {
+    this.echo.channel('posts').listen('PublicPush', (e) => {
       console.log(e);
     });
     console.log(tokenService.getId());
