@@ -4,6 +4,8 @@ import { Post } from '../../post.model';
 import { TokenService } from 'src/app/core/services/token.service';
 import { PostsService } from '../../posts.service';
 import { CommentService } from '../../comment/comment.service';
+import { Subscription } from 'rxjs';
+import { WebSocketService } from 'src/app/core/services/websocket.service';
 
 @Component({
   selector: 'app-posts-item',
@@ -22,13 +24,14 @@ export class PostsItemComponent implements OnInit {
   @Input() post: Post;
   @Input() index: number;
   @Output() oldPost = new EventEmitter<Post>();
-
+  subscription: Subscription;
   message: string;
   title: string;
   constructor(
     private tokenService: TokenService,
     private postService: PostsService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private wsService: WebSocketService
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +68,9 @@ export class PostsItemComponent implements OnInit {
     });
   }
   newComment(comment) {
-    this.comments.unshift(comment);
+    if (typeof this.comments !== 'undefined') {
+      this.comments.unshift(comment);
+    }
   }
   onShowNext() {
     this.commentService

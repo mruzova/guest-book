@@ -1,20 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Post } from './post.model';
 import { PostsService } from './posts.service';
+import { WebSocketService } from '../core/services/websocket.service';
+import { Subscription } from 'rxjs';
+import { TokenService } from '../core/services/token.service';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css'],
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnDestroy {
   posts: Post[];
   data;
   pages: number[] = [];
   currentPage: number = 1;
-  constructor(private postsService: PostsService) {}
+  subscription: Subscription;
+  subscription1: Subscription;
+
+  constructor(
+    private postsService: PostsService,
+    private wsService: WebSocketService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
     this.onGetPosts();
+    this.subscription = this.wsService.postAdded.subscribe((e) => {
+      if (e.user_id.toString() !== this.tokenService.getId()) {
+        this.posts.unshift(e);
+      }
+    });
   }
 
   newPost(post) {
@@ -27,5 +43,8 @@ export class PostsComponent implements OnInit {
       this.posts = this.data.data;
       this.pages.length = this.data.meta.last_page;
     });
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
