@@ -18,20 +18,24 @@ export class PostsListComponent implements OnInit {
 
   index: number;
   constructor(
-    private postsService: PostsService,
     private wsService: WebSocketService,
     private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
-    // this.subscription = this.wsService.postDeleted.subscribe((e) => {
-    //   if (e.user_id.toString() !== this.tokenService.getId()) {
-    //     this.posts.splice(this.index, 1);
-    //   }
-    // });
+    this.subscription = this.wsService.postDeleted.subscribe((e) => {
+      if (e.user_id.toString() !== this.tokenService.getId()) {
+        this.posts.splice(
+          this.posts.findIndex((x) => {
+            return e.id === x.id;
+          }),
+          1
+        );
+      }
+    });
   }
 
-  deletePost(index: number) {
-    this.posts.splice(index, 1);
+  deletePost(post: Post) {
+    this.posts.splice(this.posts.indexOf(post), 1);
   }
 }

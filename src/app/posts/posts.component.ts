@@ -16,7 +16,6 @@ export class PostsComponent implements OnInit, OnDestroy {
   pages: number[] = [];
   currentPage: number = 1;
   subscription: Subscription;
-  subscription1: Subscription;
 
   constructor(
     private postsService: PostsService,
