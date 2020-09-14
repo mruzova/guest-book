@@ -24,3 +24,6 @@ a {
 .guestb-link {
   cursor: default;
 }
+.logout {
+  font-size: 19px;
+}

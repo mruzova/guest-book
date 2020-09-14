@@ -26,12 +26,12 @@ export class PostsItemComponent implements OnInit {
   @Output() oldPost = new EventEmitter<Post>();
   subscription: Subscription;
   message: string;
+
   title: string;
   constructor(
     private tokenService: TokenService,
     private postService: PostsService,
-    private commentService: CommentService,
-    private wsService: WebSocketService
+    private commentService: CommentService
   ) {}
 
   ngOnInit(): void {

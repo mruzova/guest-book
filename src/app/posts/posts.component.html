@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row row-cols-2">
-    <app-posts-add class="col"
-                   (newPost)="newPost($event)"></app-posts-add>
+  <div>
+    <app-posts-add
+                       (newPost)="newPost($event)"></app-posts-add>
 
-    <app-posts-list class="col"
+    <app-posts-list
                     [posts]="posts"></app-posts-list>
 
   </div>
