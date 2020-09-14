@@ -12,12 +12,15 @@ a {
   color: white;
   cursor: pointer;
 }
-.link-custom:hover {
-  color: darkblue;
-  background: none;
-}
 
 .header-custom {
   display: flex;
   justify-content: center;
+}
+
+.guestb-link:hover {
+  color: white;
+}
+.guestb-link {
+  cursor: default;
 }

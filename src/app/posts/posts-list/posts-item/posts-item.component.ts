@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from '../../post.model';
-
+import { Comment } from '../../comment/comment.model.';
 import { TokenService } from 'src/app/core/services/token.service';
 import { PostsService } from '../../posts.service';
 import { CommentService } from '../../comment/comment.service';
@@ -61,7 +61,10 @@ export class PostsItemComponent implements OnInit {
       this.comments.reverse();
       if (this.data.data.length === 0) {
         this.error = 'there are no comments under this post yet';
+      } else {
+        this.error = null;
       }
+
       if (this.data.links.next !== null) {
         this.showNext = true;
       }

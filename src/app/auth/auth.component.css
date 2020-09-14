@@ -19,4 +19,5 @@ a:hover {
 a {
   padding: 0.01vh 9vw;
   color: darkblue;
+  white-space: nowrap;
 }

@@ -40,6 +40,7 @@ export class CommentAddComponent implements OnInit {
         this.newComment.emit(response);
         this.message = 'your comment successfully added';
       });
+    this.message = null;
     this.commentForm.reset();
   }
   private initForm() {
