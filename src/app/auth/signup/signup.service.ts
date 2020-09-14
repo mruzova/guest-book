@@ -5,13 +5,10 @@ export interface SignupModel {
   password: string;
   password_confirmation: string;
 }
-// export interface SignupResponse {
-//   token: { access_token: string; expires_at: Date };
-// }
+
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
-import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+
 import { AuthResponse } from 'src/app/core/services/token.service';
 
 @Injectable({ providedIn: 'root' })
