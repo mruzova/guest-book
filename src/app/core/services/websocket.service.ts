@@ -13,10 +13,7 @@ export class WebSocketService {
   postDeleted = new Subject<Post>();
   answerAdded = new Subject<Comment>();
 
-  constructor(
-    private tokenService: TokenService,
-    private postsService: PostsService
-  ) {
+  constructor(private tokenService: TokenService) {
     this.echo = new Echo({
       broadcaster: 'pusher',
       key: 'key',
@@ -35,22 +32,23 @@ export class WebSocketService {
       enabledTransports: ['ws', 'wss'], // https://github.com/beyondcode/laravel-websockets/issues/86
       disableStats: true,
     });
-
-    this.echo.channel('posts').listen('PublicPush', (e) => {
-      console.log(e);
-      if (e.data.type === 'post_added') {
-        this.postAdded.next(e.data.data);
-      }
-      if (e.data.type === 'post_deleted') {
-        this.postDeleted.next(e.data.data);
-      }
-    });
-
-    console.log(tokenService.getId());
-    this.echo
-      .private('user.' + this.tokenService.getId())
-      .listen('UserPush', (e) => {
+    if (this.tokenService.hasToken) {
+      this.echo.channel('posts').listen('PublicPush', (e) => {
         console.log(e);
+        if (e.data.type === 'post_added') {
+          this.postAdded.next(e.data.data);
+        }
+        if (e.data.type === 'post_deleted') {
+          this.postDeleted.next(e.data.data);
+        }
       });
+
+      console.log(tokenService.getId());
+      this.echo
+        .private('user.' + this.tokenService.getId())
+        .listen('UserPush', (e) => {
+          console.log(e);
+        });
+    }
   }
 }

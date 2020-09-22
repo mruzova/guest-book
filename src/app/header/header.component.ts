@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../auth/login/login.service';
 import { TokenService } from '../core/services/token.service';
+import { WebSocketService } from '../core/services/websocket.service';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,14 @@ import { TokenService } from '../core/services/token.service';
 export class HeaderComponent implements OnInit {
   constructor(
     private loginService: LoginService,
-    public tokenService: TokenService
+    public tokenService: TokenService,
+    private wsService: WebSocketService
   ) {}
 
   ngOnInit(): void {}
 
   onLogout() {
     this.loginService.logout();
+    this.wsService.echo.disconnect();
   }
 }
